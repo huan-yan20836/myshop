@@ -1,31 +1,30 @@
-<template>
-    <van-search v-model="keyword" placeholder="2026240401075-冯灿" @search="onSearch" @cancel="onCancel" show-action shape="round" />
-    <HomeSwiper />
-    <HomeGrid @click="toggleProduct" />
-    <HomeProduct v-show="showProduct" />
-</template>
-
 <script setup>
-import { showToast } from 'vant';
 import { ref } from 'vue'
-import HomeSwiper from '../components/HomeSwiper.vue';
-import HomeGrid from '../components/HomeGrid.vue';
-import HomeProduct from '../components/HomeProduct.vue';
+import { showToast } from 'vant'
+import HomeSwiper from '../components/HomeSwiper.vue'
+import HomeGrid from '../components/HomeGrid.vue'
+import HomeProduct from '../components/HomeProduct.vue'
+import HomeNew from '../components/HomeNew.vue'
+import HomeTop from '../components/HomeTop.vue'
 
-const keyword = ref('')
+const searchValue = ref('')
 const showProduct = ref(false)
 
-const toggleProduct = () => {
-  showProduct.value = !showProduct.value
-}
-// console.log(keyword.value)
-
 const onSearch = (value) => {
-  // console.log('搜索:', value)
-  showToast("搜索内容："+value)
+  showToast('搜索：' + value)
 }
 
-const onCancel = ()=>{
-  showToast("取消")
+const onCancel = () => {
+  showToast('搜索取消')
 }
 </script>
+
+<template>
+  <van-search v-model="searchValue" placeholder="请输入搜索关键词" shape="round" show-action @search="onSearch"
+    @cancel="onCancel" />
+  <HomeSwiper />
+  <HomeGrid @click="showProduct = !showProduct" />
+  <HomeProduct v-show="showProduct" />
+  <HomeNew />
+  <HomeTop />
+</template>

@@ -1,35 +1,21 @@
-<template>
-    <van-swipe class="home-swiper" :autoplay="3000" lazy-render indicator-color="#FF8000">
-        <van-swipe-item v-for="item in banners" :key="item">
-            <img class="home-swiper__img" :src="item" alt="" />
-        </van-swipe-item>
-    </van-swipe>
-</template>
-
 <script setup>
-const banners = [
-  '/images/banner1.jpg',
-  '/images/banner2.jpg',
-]
+const banner = ['/images/banner1.jpg', '/images/banner2.jpg']
 </script>
 
+<template>
+  <van-swipe :autoplay="3000" lazy-render indicator-color="#FF8000">
+    <van-swipe-item v-for="(item, index) in banner" :key="index">
+      <img :src="item" alt="" />
+    </van-swipe-item>
+  </van-swipe>
+</template>
+
 <style lang="less" scoped>
-.home-swiper {
+.van-swipe {
   width: 100%;
 
-  &__img {
-    display: block;
+  img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  :deep(.van-swipe__track) {
-    height: auto;
-  }
-
-  :deep(.van-swipe-item) {
-    height: auto;
   }
 }
 </style>

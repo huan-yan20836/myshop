@@ -1,9 +1,3 @@
-<template>
-    <van-grid class="home-grid" :column-num="5" :gutter="5" square>
-        <van-grid-item v-for="item in menuList" :key="item.text" :icon="item.url" :text="item.text" />
-    </van-grid>
-</template>
-
 <script setup>
 import menu1 from '../assets/images/menu1.png'
 import menu2 from '../assets/images/menu2.png'
@@ -30,20 +24,8 @@ const menuList = [
 ]
 </script>
 
-<style lang="less" scoped>
-.home-grid {
-  :deep(.van-grid-item__content) {
-    padding: 0;
-  }
-
-  :deep(.van-grid-item__icon) {
-    font-size: 0;
-  }
-
-  :deep(.van-grid-item__icon img) {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-}
-</style>
+<template>
+  <van-grid :column-num="5" square :gap="5" :border="false">
+    <van-grid-item v-for="(item,index) in menuList" :key="index" :icon="item.url" :text="item.text" />
+  </van-grid>
+</template>
