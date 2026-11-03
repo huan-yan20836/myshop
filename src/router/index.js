@@ -31,6 +31,18 @@ const routes = [
     meta: { title: '购物车', isShowNav: true, isShowBack: true }
   },
   {
+    path: '/login', //路由路径
+    name: 'login', //懒加载Login组件
+    component: () => import('../pages/Login.vue'),
+    meta: { title: '登录', isShowNav: true, isShowBack: true }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../pages/Register.vue'),
+    meta: { title: '注册', isShowNav: true, isShowBack: true }
+  },
+  {
     path: '/user',
     name: 'User',
     component: () => import('../pages/User.vue'),
@@ -42,6 +54,7 @@ const routes = [
     component: () => import('../components/HomeProDetails.vue'),
     meta: { title: '商品详情' }
   }
+
 ]
 
 const router = createRouter({

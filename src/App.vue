@@ -1,12 +1,33 @@
 <script setup>
+import { onMounted } from "vue";
 import { useRoute, useRouter } from 'vue-router'
+import { getUser } from "./api";
+import useUser from "./stores/user";
 
 const route = useRoute()
 const router = useRouter()
+const { user, updateUser } = useUser();
 
 const onClickLeft = () => {
   router.push({ name: 'Home' })
 }
+
+onMounted(() => {
+  if (user.isLogin) {
+    loadUser();
+  }
+});
+
+const loadUser = async () => {
+  const data = await getUser();
+  if (data) {
+    updateUser({
+      isLogin: true,
+      username: data.username,
+      avatar: data.avatar,
+    });
+  }
+};
 </script>
 
 <template>
